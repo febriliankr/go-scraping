@@ -99,6 +99,7 @@ func getContents(w http.ResponseWriter, r *http.Request) {
 
 	c.OnHTML("font", func(e *colly.HTMLElement) {
 		text := e.Text
+		log.Println(e.ChildText("p"))
 
 		if text != "" {
 			response = append(response, text)
