@@ -34,6 +34,8 @@ func main() {
 }
 
 func getLinks(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", r.Header.Get("Origin"))
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
 	//Verify the param "URL" exists
 	URL := r.URL.Query().Get("url")
 	if URL == "" {
@@ -75,6 +77,8 @@ func getLinks(w http.ResponseWriter, r *http.Request) {
 }
 
 func getContents(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", r.Header.Get("Origin"))
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
 
 	// TODO: add get request to /search?url=PG_BLOG and loop through all the links
 	// TODO: serve it as a mobile/kindle friendly webpage
