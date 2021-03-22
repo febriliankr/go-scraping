@@ -27,7 +27,7 @@ func main() {
 	log.Fatal(http.ListenAndServe(addr, nil))
 }
 
-type hyperlink struct {
+type Hyperlink struct {
 	href string
 	text string
 }
@@ -45,13 +45,13 @@ func getData(w http.ResponseWriter, r *http.Request) {
 	c := colly.NewCollector()
 
 	//Slices to store the data
-	var response []hyperlink
+	var response []Hyperlink
 
 	c.OnHTML("a[href]", func(e *colly.HTMLElement) {
 		link := e.Request.AbsoluteURL(e.Attr("href"))
 		text := e.Text
 
-		hl := hyperlink{
+		hl := Hyperlink{
 			href: link,
 			text: text,
 		}
@@ -63,9 +63,8 @@ func getData(w http.ResponseWriter, r *http.Request) {
 
 	c.Visit(URL)
 
-	log.Println(response)
-
 	object, err := json.Marshal(response)
+	log.Println(object)
 	if err != nil {
 		log.Println("failed to serialize response:", err)
 		return
