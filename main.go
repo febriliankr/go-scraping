@@ -28,8 +28,8 @@ func main() {
 }
 
 type Hyperlink struct {
-	href string
-	text string
+	Href string
+	Text string
 }
 
 func getData(w http.ResponseWriter, r *http.Request) {
@@ -52,8 +52,8 @@ func getData(w http.ResponseWriter, r *http.Request) {
 		text := e.Text
 
 		hl := Hyperlink{
-			href: link,
-			text: text,
+			Href: link,
+			Text: text,
 		}
 
 		if link != "" && text != "" {
@@ -64,7 +64,6 @@ func getData(w http.ResponseWriter, r *http.Request) {
 	c.Visit(URL)
 
 	object, err := json.Marshal(response)
-	log.Println(object)
 	if err != nil {
 		log.Println("failed to serialize response:", err)
 		return
