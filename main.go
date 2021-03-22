@@ -20,6 +20,7 @@ func main() {
 	addr := ":8080"
 
 	http.Handle("/", http.FileServer(http.Dir("./static")))
+
 	http.HandleFunc("/search", getData)
 	http.HandleFunc("/ping", ping)
 	log.Println("listening on ", addr)
