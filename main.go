@@ -22,7 +22,7 @@ func ping(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
-	addr := ":8080"
+	addr := ":8081"
 
 	http.Handle("/", http.FileServer(http.Dir("./static")))
 
@@ -99,7 +99,6 @@ func getContents(w http.ResponseWriter, r *http.Request) {
 
 	c.OnHTML("font", func(e *colly.HTMLElement) {
 		text := e.Text
-		log.Println(e.ChildText("p"))
 
 		if text != "" {
 			response = append(response, text)
